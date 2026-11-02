@@ -1,0 +1,196 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://widgets/select/state_machine_node.gd" type="Script" id=1]
+[ext_resource path="res://widgets/select/state_machine_row.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 5.0
+draw_center = false
+border_width_right = 1
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0, 0, 0, 0.392157 )
+border_width_top = 1
+border_color = Color( 1, 1, 1, 1 )
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[node name="StateMachine" type="GraphNode"]
+offset_right = 370.0
+offset_bottom = 194.0
+mouse_filter = 1
+title = "STATE MACHINE"
+show_close = true
+resizable = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color( 1, 1, 1, 1 )
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color( 1, 1, 1, 1 )
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color( 1, 1, 1, 1 )
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color( 1, 1, 1, 1 )
+slot/3/left_enabled = false
+slot/3/left_type = 0
+slot/3/left_color = Color( 1, 1, 1, 1 )
+slot/3/right_enabled = false
+slot/3/right_type = 0
+slot/3/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 1 )
+
+[node name="header" type="HBoxContainer" parent="."]
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 354.0
+offset_bottom = 38.0
+
+[node name="inputs" type="HBoxContainer" parent="header"]
+offset_right = 200.0
+offset_bottom = 14.0
+custom_minimum_size = Vector2( 200, 0 )
+
+[node name="Label" type="Label" parent="header/inputs"]
+offset_right = 60.0
+offset_bottom = 14.0
+text = "Input: Int"
+
+[node name="hrule" type="Panel" parent="header/inputs"]
+offset_left = 64.0
+offset_right = 69.0
+offset_bottom = 14.0
+custom_minimum_size = Vector2( 5, 0 )
+theme_override_styles/panel = SubResource( 2 )
+
+[node name="Label2" type="Label" parent="header/inputs"]
+offset_left = 73.0
+offset_right = 192.0
+offset_bottom = 14.0
+text = "Output: Animation"
+
+[node name="states" type="HBoxContainer" parent="header"]
+offset_left = 204.0
+offset_right = 338.0
+offset_bottom = 14.0
+size_flags_horizontal = 3
+
+[node name="state" type="PanelContainer" parent="."]
+offset_left = 16.0
+offset_top = 39.0
+offset_right = 354.0
+offset_bottom = 97.0
+size_flags_horizontal = 9
+size_flags_vertical = 9
+theme_override_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="row" type="HBoxContainer" parent="state"]
+offset_top = 5.0
+offset_right = 338.0
+offset_bottom = 53.0
+
+[node name="properties" type="HBoxContainer" parent="state/row"]
+offset_right = 200.0
+offset_bottom = 48.0
+custom_minimum_size = Vector2( 200, 0 )
+
+[node name="animation" type="OptionButton" parent="state/row/properties"]
+offset_top = 14.0
+offset_right = 93.0
+offset_bottom = 34.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="name" type="LineEdit" parent="state/row/properties"]
+offset_left = 97.0
+offset_top = 12.0
+offset_right = 191.0
+offset_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "name"
+
+[node name="hrule" type="Panel" parent="state/row/properties"]
+offset_left = 195.0
+offset_right = 200.0
+offset_bottom = 48.0
+custom_minimum_size = Vector2( 5, 0 )
+theme_override_styles/panel = SubResource( 2 )
+
+[node name="transitions" type="HBoxContainer" parent="state/row"]
+offset_left = 204.0
+offset_right = 314.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+
+[node name="tr" type="HBoxContainer" parent="state/row/transitions"]
+offset_right = 110.0
+offset_bottom = 48.0
+custom_minimum_size = Vector2( 110, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="edit" type="VBoxContainer" parent="state/row/transitions/tr"]
+offset_right = 101.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="OptionButton" parent="state/row/transitions/tr/edit"]
+offset_right = 101.0
+offset_bottom = 20.0
+size_flags_horizontal = 3
+text = "Direct"
+items = [ "Direct", null, false, 0, null, "Indirect", null, false, 1, null, "AtEnd", null, false, 2, null, "Disabled", null, false, 3, null ]
+selected = 0
+
+[node name="LineEdit" type="LineEdit" parent="state/row/transitions/tr/edit"]
+offset_top = 24.0
+offset_right = 101.0
+offset_bottom = 48.0
+size_flags_horizontal = 3
+placeholder_text = "blend"
+
+[node name="hrule2" type="Panel" parent="state/row/transitions/tr"]
+offset_left = 105.0
+offset_right = 110.0
+offset_bottom = 48.0
+custom_minimum_size = Vector2( 5, 0 )
+theme_override_styles/panel = SubResource( 2 )
+
+[node name="delete" type="Button" parent="state/row"]
+offset_left = 318.0
+offset_top = 14.0
+offset_right = 338.0
+offset_bottom = 34.0
+size_flags_vertical = 4
+text = "X"
+
+[node name="spacer" type="Control" parent="."]
+offset_left = 16.0
+offset_top = 98.0
+offset_right = 354.0
+offset_bottom = 118.0
+custom_minimum_size = Vector2( 0, 20 )
+
+[node name="add" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 119.0
+offset_right = 354.0
+offset_bottom = 139.0
+text = "Add State"
+
+[connection signal="text_changed" from="state/row/properties/name" to="state" method="_on_name_text_changed"]
+[connection signal="pressed" from="state/row/delete" to="state" method="_on_delete_pressed"]
+[connection signal="pressed" from="add" to="." method="_on_add_pressed"]
