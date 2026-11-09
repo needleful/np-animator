@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceerrus37735"]
+
+[ext_resource type="Script" uid="uid://bgvnyem1lxdp6" path="res://widgets/properties/float_range.gd" id="1_qx44m"]
+
+[node name="FloatInput" type="VBoxContainer"]
+script = ExtResource("1_qx44m")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Amount: "
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0.0"
+
+[node name="Slider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.001

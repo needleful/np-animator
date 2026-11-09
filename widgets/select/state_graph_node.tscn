@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2hqm0wi8fhg2"]
+
+[ext_resource type="Script" uid="uid://cjjpss1qi7c28" path="res://widgets/select/state_graph_node.gd" id="1_fk1em"]
+
+[node name="StateGraphNode" type="GraphNode"]
+custom_minimum_size = Vector2(200, 0)
+offset_right = 200.0
+offset_bottom = 108.0
+title = "State"
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_fk1em")
+
+[node name="StateName" type="LineEdit" parent="."]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 2

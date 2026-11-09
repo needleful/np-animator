@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwidilhl3qvu4"]
+
+[ext_resource type="Script" uid="uid://bfwkbibko8as8" path="res://widgets/values/constant_node.gd" id="1_p87q6"]
+
+[node name="ConstantNode" type="GraphNode"]
+title = "Constant"
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_p87q6")
+metadata/_custom_type_script = "uid://cxds8jein2sem"
+
+[node name="Type" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Type"]
+layout_mode = 2
+text = "Type"
+
+[node name="OptionButton" type="OptionButton" parent="Type"]
+layout_mode = 2
+
+[node name="Inputs" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="TextEdit" type="LineEdit" parent="Inputs"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Inputs"]
+layout_mode = 2
+
+[node name="AnimationSelect" type="OptionButton" parent="Inputs"]
+visible = false
+layout_mode = 2
+
+[node name="BoolSelect" type="OptionButton" parent="Inputs"]
+visible = false
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "False"
+popup/item_0/id = 0
+popup/item_1/text = "True"
+popup/item_1/id = 1
+
+[node name="Vector1" type="LineEdit" parent="Inputs"]
+visible = false
+layout_mode = 2
+
+[node name="Vector2" type="LineEdit" parent="Inputs"]
+visible = false
+layout_mode = 2
+
+[node name="Vector3" type="LineEdit" parent="Inputs"]
+visible = false
+layout_mode = 2

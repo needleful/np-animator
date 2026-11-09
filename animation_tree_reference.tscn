@@ -1,0 +1,76 @@
+[gd_scene load_steps=13 format=3 uid="uid://bup2rvdcga4a8"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jsoie"]
+animation = &"Test2"
+
+[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_jsoie"]
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_jsoie"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jsoie"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_22q3b"]
+states/BlendTree/node = SubResource("AnimationNodeBlendTree_jsoie")
+states/BlendTree/position = Vector2(541, 92)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_22q3b"]
+animation = &"Test1"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_jsoie"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_jsoie"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_22q3b"]
+graph_offset = Vector2(-517.6244, -33.44342)
+nodes/output/position = Vector2(600, 280)
+nodes/Blend3/node = SubResource("AnimationNodeBlend3_jsoie")
+nodes/Blend3/position = Vector2(100, 220)
+nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_jsoie")
+nodes/TimeSeek/position = Vector2(-140, 140)
+nodes/Test/node = SubResource("AnimationNodeAnimation_22q3b")
+nodes/Test/position = Vector2(-340, 100)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_jsoie")
+nodes/Animation/position = Vector2(-260, 440)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_jsoie")
+nodes/TimeScale/position = Vector2(-400, 300)
+nodes/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_jsoie")
+nodes/BlendSpace1D/position = Vector2(40, 20)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_22q3b")
+nodes/StateMachine/position = Vector2(-660, 260)
+node_connections = [&"output", 0, &"Blend3", &"Blend3", 0, &"TimeSeek", &"Blend3", 1, &"TimeScale", &"Blend3", 2, &"Animation", &"TimeSeek", 0, &"Test", &"TimeScale", 0, &"StateMachine"]
+
+[sub_resource type="Animation" id="Animation_jsoie"]
+resource_name = "Test1"
+step = 0.05
+
+[sub_resource type="Animation" id="Animation_22q3b"]
+resource_name = "Test2"
+length = 5.0
+step = 0.05
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m3nnt"]
+_data = {
+&"Test1": SubResource("Animation_jsoie"),
+&"Test2": SubResource("Animation_22q3b")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_22q3b")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Blend3/blend_amount = 0.0
+parameters/TimeSeek/seek_request = -1.0
+parameters/TimeScale/scale = 32.0
+parameters/BlendSpace1D/blend_position = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_m3nnt")
+}

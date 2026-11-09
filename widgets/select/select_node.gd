@@ -8,6 +8,7 @@ const FOOTER_CHILDREN := 2
 @onready var item_template := item.duplicate()
 
 func _ready():
+	super._ready()
 	set_input(0, NPA.Type._int)
 	set_output(get_child_count() - FOOTER_CHILDREN, NPA.Type._Animation)
 	

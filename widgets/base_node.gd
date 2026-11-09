@@ -1,8 +1,8 @@
-extends GraphNode
 class_name NPANode
+extends GraphNode
 
 func _ready():
-	var _x = connect("resize_request", Callable(self, "_on_resize_request"))
+	var _x = resize_request.connect(_on_resize_request)
 
 func _process(_delta):
 	size = Vector2(0,0)
@@ -10,13 +10,13 @@ func _process(_delta):
 func _on_resize_request(min_size: Vector2):
 	custom_minimum_size = min_size
 
-func set_input(slot: int, type: int):
+func set_input(slot: int, type: NPA.Type):
 	set_slot(slot, true, type, NPA.colors[type], false, 0, Color.BLACK)
 
-func set_output(slot: int, type: int):
+func set_output(slot: int, type: NPA.Type):
 	set_slot(slot, false, 0, Color.BLACK, true, type, NPA.colors[type])
 
-func set_in_out(slot: int, type_in: int, type_out: int):
+func set_in_out(slot: int, type_in: NPA.Type, type_out: NPA.Type):
 	set_slot(slot,
 		true, type_in, NPA.colors[type_in],
 		true, type_out, NPA.colors[type_out])
@@ -50,3 +50,30 @@ func copy_slot(slot:int, new_slot: int):
 		get_slot_type_right(slot),
 		get_slot_color_right(slot)
 	)
+
+func animation_dropdown(select: OptionButton):
+	var p := get_parent()
+	while p and p is not NPA:
+		p = p.get_parent()
+	if p is NPA:
+		p._animation_dropdown(select)
+	else:
+		push_error('Parent of node was not NP-Animator UI')
+
+static func _type_dropdown(select: OptionButton):
+	select.clear()
+	for c in NPA.Type.keys():
+		select.add_item(c.capitalize())
+
+# TODO: do I want to implement a more declarative system?
+func _inputs() -> Array[Dictionary]:
+	return []
+
+func _outputs() -> Array[Dictionary]:
+	return []
+
+func _build_node():
+	for input in _inputs():
+		pass
+	for output in _outputs():
+		pass

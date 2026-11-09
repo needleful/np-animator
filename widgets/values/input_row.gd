@@ -4,9 +4,7 @@ extends Node
 
 func _ready():
 	select = $OptionButton
-	select.clear()
-	for c in NPA.Type.keys():
-		select.add_item(c.capitalize())
+	NPANode._type_dropdown(select)
 	
 func _on_delete_pressed():
 	get_parent().delete_port(self)

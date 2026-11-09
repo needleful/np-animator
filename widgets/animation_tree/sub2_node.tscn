@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4hkhwte1pi3v"]
+
+[ext_resource type="PackedScene" uid="uid://bparuap7s3xax" path="res://widgets/animation_tree/blend2_node.tscn" id="1_kq6y1"]
+
+[node name="Sub2Node" instance=ExtResource("1_kq6y1")]
+title = "Sub2"
+blend_type = 2

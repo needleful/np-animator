@@ -1,0 +1,214 @@
+# NP Animator
+&a
++
+_
+m3
+- Editing
+	p1
+	i1
+	- Connect to AnimationPlayer
+		p1
+		i2
+		- Populate Animation dropdowns
+			p1
+			i3
+	- Nodes
+		p1
+		i15
+		- Nodes in the AnimationTree
+			p1
+			i31
+			- OneShot
+				p1
+				i36
+				x
+			- Add2
+				p1
+				i37
+				x
+			- Add3
+				p1
+				i38
+				x
+			- Blend2
+				p1
+				i39
+				x
+			- Blend3
+				p1
+				i40
+				x
+			- TimeSeek
+				p1
+				i41
+				x
+			- TimeScale
+				p1
+				i42
+				x
+			- Transition
+				p1
+				i43
+				- Idk how it works
+					p1
+					i70
+			- BlendTree (Maybe?)
+				p1
+				i44
+				x
+				/Nah
+			- BlendSpace1D
+				p1
+				i47
+			- BlendSpace2D
+				p1
+				i48
+			- StateMachine
+				p1
+				i49
+				- Connection Properties
+					p1
+					i71
+				- Names
+					p1
+					i72
+			- Animation
+				p1
+				i34
+				x
+				/Possibly Redundant
+			- Sub2
+				p1
+				i63
+				x
+		- Unique Nodes
+			p1
+			i32
+			- Select
+				p1
+				i33
+				/Like a State machine, but by default everything is connected to everything else, and there is one default blend time.
+				/Int or Enum as input.
+			- Constant
+				p1
+				i35
+				x
+				/Superset of base Animation node
+			- NP-Animate Tree
+				p1
+				i46
+				/Nested/Reused trees
+			- Enum Definition
+				p1
+				i27
+				/Defined as a node, I guess
+			- Smooth
+				p1
+				i51
+			- IK
+				p1
+				i52
+			- Math
+				p1
+				i61
+				/Same as Expression, but only floats in and out
+			- Expression
+				p1
+				i62
+	- Property Types
+		p1
+		i16
+		- Animation
+			p1
+			i17
+			- A dropdown of strings
+				p1
+				i18
+		- Int
+			p1
+			i19
+			- Can be in a range
+				p1
+				i20
+		- Float
+			p1
+			i21
+			- Possible range
+				p1
+				i22
+		- Vector2
+			p1
+			i23
+			- Ranged
+				p1
+				i24
+		- Bool
+			p1
+			i25
+		- Enums
+			p1
+			i29
+			- Defined per-tree
+				p1
+				i30
+		- String
+			p1
+			i50
+		- Vector3
+			p1
+			i53
+			- Primarily for location in IK
+				p1
+				i54
+	- NP-Animator Properties
+		p1
+		i26
+		/Things that aren't in a base AnimationTree
+		- Class Name
+			p1
+			i28
+	- Prevent cycles
+		p1
+		i59
+- Programming
+	p1
+	i10
+- Saving
+	p1
+	i11
+	- Write to JSON or something
+		p1
+		i12
+- Conversion
+	p1
+	i13
+	- Convert to AnimationTree with a script
+		p1
+		i14
+- Bugs/Adjustments
+	p1
+	i55
+	- Break connection when input/output types change
+		p1
+		i56
+	- Constrain LineEdits for floats (or custom UI)
+		p1
+		i57
+	- Cannot delete graph nodes
+		p1
+		i58
+	- Allow blend nodes to go beyond 1/-1?
+		p1
+		i60
+	- Only Allow one output per Animation node for now
+		p1
+		i66
+	- Can't right click to move creation menu
+		p1
+		i67
+	- StateMachine: unreliable selection of state nodes
+		p1
+		i68
+	- StateMachine: State Nodes don't spawn quite where I clicked
+		p1
+		i69

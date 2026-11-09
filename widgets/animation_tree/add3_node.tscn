@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkh252yo4u55j"]
+
+[ext_resource type="PackedScene" uid="uid://cidr6qgak1g48" path="res://widgets/animation_tree/blend3_node.tscn" id="1_5gwj0"]
+
+[node name="Add3Node" instance=ExtResource("1_5gwj0")]
+title = "Add3"
+blend_type = 1
+
+[node name="Label2" parent="." index="2"]
+text = "+Add"
+
+[node name="Label3" parent="." index="3"]
+text = "-Subtract"

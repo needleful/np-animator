@@ -7,7 +7,8 @@ enum Type {
 	_bool,
 	_Vector2,
 	_Vector3,
-	_Animation
+	_Animation,
+	_String
 }
 
 const colors = {
@@ -43,23 +44,30 @@ const animations = [
 	"SpinKick"
 ]
 
-@export var widgets := [] # (Array, PackedScene)
-
-func _ready():
-	$Output.set_input(0, Type._Animation)
-	var _x = connect("connection_request", Callable(self, "_on_connection_request"))
-	_x = connect("disconnection_request", Callable(self, "_on_disconnection_request"))
-	for w in widgets:
-		if w is PackedScene:
-			var str_start = w.resource_path.rfind("/") + 1
-			var widget_name = w.resource_path.substr(str_start, w.resource_path.rfind(".") - str_start)
-			$creationMenu.add_item("New "+widget_name.capitalize())
+@export var widget_groups: Array[WidgetGroup]
 
 func _gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			$creationMenu.position = event.position
 			$creationMenu.popup()
+
+func _ready():
+	$Output.set_input(0, Type._Animation)
+	var _x = connection_request.connect(_on_connection_request)
+	_x = disconnection_request.connect(_on_disconnection_request)
+	var menu:PopupMenu = $creationMenu
+	for wg in widget_groups:
+		var popup := PopupMenu.new()
+		menu.add_submenu_node_item(wg.name, popup)
+		for widget in wg.widgets:
+			_add_widget(popup, widget)
+		popup.index_pressed.connect(_create_widget.bind(wg))
+
+func _add_widget(menu: PopupMenu, widget: PackedScene):
+	var str_start = widget.resource_path.rfind("/") + 1
+	var widget_name = widget.resource_path.substr(str_start, widget.resource_path.rfind(".") - str_start)
+	menu.add_item("New "+widget_name.capitalize())
 
 func _on_connection_request(from: String, from_slot:int, to:String, to_slot:int):
 	var con = get_connection_list()
@@ -100,10 +108,27 @@ func reconnect_slot(node: GraphNode, old_port, new_port):
 			if res != OK:
 				print_debug("Could not connect %s to %s: %d" % [c.from_node, c.to_node, res])
 
-func _on_item_created(index):
-	var w:GraphNode = widgets[index].instantiate()
+func _create_widget(index: int, widget_group: WidgetGroup):
+	var widget := widget_group.widgets[index]
+	var w:NPANode = widget.instantiate()
 	add_child(w)
 	var m := get_global_mouse_position()
-	print("mouse position: ", m)
 	w.position_offset = (m + scroll_offset) / zoom
 	var _x = w.delete_request.connect(_on_close_request.bind(w))
+
+func _animation_dropdown(select: OptionButton):
+	select.clear()
+	for a in animations:
+		select.add_item(a)
+
+# Constrain a LineEdit for a given type
+static func _typed_input(text: LineEdit, type: Type):
+	match type:
+		Type._int:
+			text.virtual_keyboard_type = LineEdit.KEYBOARD_TYPE_NUMBER
+		Type._float:
+			text.virtual_keyboard_type = LineEdit.KEYBOARD_TYPE_NUMBER_DECIMAL
+		Type._String:
+			text.virtual_keyboard_type = LineEdit.KEYBOARD_TYPE_DEFAULT
+		_:
+			push_error('Unsupported type for text input: ', type)
