@@ -88,6 +88,7 @@ m3
 			- Select
 				p1
 				i33
+				x
 				/Like a State machine, but by default everything is connected to everything else, and there is one default blend time.
 				/Int or Enum as input.
 			- Constant
@@ -122,21 +123,27 @@ m3
 		- Animation
 			p1
 			i17
+			x
 			- A dropdown of strings
 				p1
 				i18
+				x
 		- Int
 			p1
 			i19
+			x
 			- Can be in a range
 				p1
 				i20
+				x
 		- Float
 			p1
 			i21
+			x
 			- Possible range
 				p1
 				i22
+				x
 		- Vector2
 			p1
 			i23
@@ -146,6 +153,7 @@ m3
 		- Bool
 			p1
 			i25
+			x
 		- Enums
 			p1
 			i29
@@ -155,12 +163,16 @@ m3
 		- String
 			p1
 			i50
+			x
 		- Vector3
 			p1
 			i53
 			- Primarily for location in IK
 				p1
 				i54
+		- Ability to disable input nodes when fed from an input
+			p1
+			i128
 	- NP-Animator Properties
 		p1
 		i26
@@ -171,15 +183,15 @@ m3
 	- Prevent cycles
 		p1
 		i59
-- Programming
-	p1
-	i10
 - Saving
 	p1
 	i11
 	- Write to JSON or something
 		p1
 		i12
+	- Load from a JSON file
+		p1
+		i120
 - Conversion
 	p1
 	i13
@@ -213,3 +225,24 @@ m3
 	- StateMachine: State Nodes don't spawn quite where I clicked
 		p1
 		i69
+- UI
+	p1
+	i121
+	- Make a window for editing and previewing in the editor
+		p1
+		i122
+		- 3D viewport on the side, resizable
+			p1
+			i123
+		- Have properties editable on the sidebar, maybe
+			p1
+			i124
+	- Improve visuals
+		p1
+		i125
+		- StateMachine
+			p1
+			i126
+			- Move input and output to near the center, side by side when parallel
+				p1
+				i127
