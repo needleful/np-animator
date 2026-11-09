@@ -46,7 +46,7 @@ range_max = -1
 range_min = -1
 
 [node name="Graph" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
 [node name="GraphEdit" type="GraphEdit" parent="Graph"]

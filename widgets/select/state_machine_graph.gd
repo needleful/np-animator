@@ -1,11 +1,15 @@
+class_name StateMachineGraphEdit
 extends GraphEdit
 
 signal create_at(global_position: Vector2)
+signal clicked(global_position: Vector2)
 
 func _gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			create_at.emit(event.global_position)
+		elif event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			clicked.emit(event.position)
 
 func _ready():
 	var _x = connection_request.connect(_on_connection_request)

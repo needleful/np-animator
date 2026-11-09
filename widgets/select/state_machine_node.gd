@@ -4,8 +4,11 @@ const HEADER_CHILDREN := 2
 
 @onready var creationMenu := $Graph/GraphEdit/PopupMenu
 @onready var stateInput: IntProperty = $HBoxContainer/IntInput
+@onready var graph: StateMachineGraphEdit = $Graph/GraphEdit
 @export var graph_node_template : PackedScene
 @export var empty_node_template : PackedScene
+
+var selected_connect: Dictionary
 
 var max_state_id := 0
 var created_position: Vector2
@@ -18,7 +21,8 @@ var state_labels: Dictionary[int, Label]
 func _ready():
 	super._ready()
 	set_in_out(0, NPA.Type._int, NPA.Type._Animation)
-	$Graph/GraphEdit.create_at.connect(_request_creation)
+	graph.create_at.connect(_request_creation)
+	graph.clicked.connect(_select_connection)
 	creationMenu.index_pressed.connect(_create_node)
 
 func _create_node(index: int):
@@ -54,8 +58,22 @@ func _create_node(index: int):
 						c.free()
 						return
 					has_end = true
-	$Graph/GraphEdit.add_child(c)
+	graph.add_child(c)
 	c.global_position = created_position
+
+func _select_connection(event_position: Vector2):
+	var c := graph.get_closest_connection_at_point(event_position, 4.0)
+	if selected_connect:
+		_conn_deselect(selected_connect)
+	if c:
+		_conn_select(c)
+	selected_connect = c
+
+func _conn_select(c: Dictionary):
+	graph.set_connection_activity(c.from_node, c.from_port, c.to_node, c.to_port, 1.0)
+
+func _conn_deselect(c: Dictionary):
+	graph.set_connection_activity(c.from_node, c.from_port, c.to_node, c.to_port, 0.0)
 
 func _on_state_name_changed(new_name: String, id: int):
 	if id in state_labels:

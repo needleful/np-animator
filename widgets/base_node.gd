@@ -1,6 +1,8 @@
 class_name NPANode
 extends GraphNode
 
+const COLOR_SELECTED := Color.GHOST_WHITE
+
 func _ready():
 	var _x = resize_request.connect(_on_resize_request)
 
@@ -20,7 +22,19 @@ func set_in_out(slot: int, type_in: NPA.Type, type_out: NPA.Type):
 	set_slot(slot,
 		true, type_in, NPA.colors[type_in],
 		true, type_out, NPA.colors[type_out])
-	
+
+func set_input_color(slot: int, color: Color):
+	set_slot_color_left(slot, color)
+
+func set_output_color(slot: int, color: Color):
+	set_slot_color_right(slot, color)
+
+func reset_input_color(slot: int):
+	set_slot_color_left(slot, NPA.colors[get_slot_type_left(slot)])
+
+func reset_output_color(slot: int):
+	set_slot_color_right(slot, NPA.colors[get_slot_type_right(slot)])
+
 func delete_port(node: Node):
 	var slot = get_children().find(node)
 	var edit := get_parent() as NPA
