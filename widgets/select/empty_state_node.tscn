@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7wsdk33ibu6s"]
+
+[ext_resource type="Script" uid="uid://bosa7xeud8yrk" path="res://widgets/select/empty_state_node.gd" id="1_mf12t"]
+
+[node name="EmptyStateNode" type="GraphNode"]
+title = "Empty"
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_mf12t")
+metadata/_custom_type_script = "uid://cxds8jein2sem"
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2

@@ -17,7 +17,8 @@ const colors = {
 	Type._bool: Color.GREEN,
 	Type._Vector2: Color.ORANGE,
 	Type._Vector3: Color.YELLOW,
-	Type._Animation: Color.DEEP_PINK
+	Type._Animation: Color.DEEP_PINK,
+	Type._String: Color.BISQUE
 }
 
 const animations = [

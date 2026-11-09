@@ -42,5 +42,5 @@ func _update_slider():
 
 func _on_value_changed(val: float):
 	value = val
-	$HBoxContainer/Label2.text = val
+	$HBoxContainer/Label2.text = str(val)
 	value_changed.emit(val)

@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqudn05mo5bbv"]
+[gd_scene load_steps=7 format=3 uid="uid://dqudn05mo5bbv"]
 
 [ext_resource type="Script" uid="uid://bvt2tljrmt4b" path="res://widgets/select/state_machine_node.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c2hqm0wi8fhg2" path="res://widgets/select/state_graph_node.tscn" id="2_6r685"]
 [ext_resource type="Script" uid="uid://d1w5gnppvquhu" path="res://widgets/animation_tree/anchor.gd" id="2_270e5"]
 [ext_resource type="Script" uid="uid://nkfwe1u7ej8t" path="res://widgets/select/state_machine_graph.gd" id="2_ybcgl"]
+[ext_resource type="PackedScene" uid="uid://b7wsdk33ibu6s" path="res://widgets/select/empty_state_node.tscn" id="3_e5e5x"]
+[ext_resource type="PackedScene" uid="uid://t37n1ftspja1" path="res://widgets/properties/int_input.tscn" id="4_snfd8"]
 
 [node name="StateMachine" type="GraphNode"]
-custom_minimum_size = Vector2(200, 200)
-offset_right = 647.0
-offset_bottom = 434.0
+custom_minimum_size = Vector2(600, 450)
+offset_right = 600.0
+offset_bottom = 450.0
 mouse_filter = 1
 resizable = true
 title = "State Machine"
@@ -32,17 +34,16 @@ slot/1/right_icon = null
 slot/1/draw_stylebox = true
 script = ExtResource("1")
 graph_node_template = ExtResource("2_6r685")
+empty_node_template = ExtResource("3_e5e5x")
 
-[node name="header" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="header"]
+[node name="IntInput" parent="HBoxContainer" instance=ExtResource("4_snfd8")]
 layout_mode = 2
-text = "State"
-
-[node name="states" type="HBoxContainer" parent="header"]
-layout_mode = 2
-size_flags_horizontal = 3
+label_name = "State"
+range_max = -1
+range_min = -1
 
 [node name="Graph" type="Control" parent="."]
 custom_minimum_size = Vector2(0, 20)
@@ -52,21 +53,27 @@ layout_mode = 2
 layout_mode = 0
 offset_left = 12.0
 offset_top = 2.0
-offset_right = 599.0
-offset_bottom = 336.0
+offset_right = 552.0
+offset_bottom = 317.0
 size_flags_vertical = 3
 show_grid = false
 snapping_enabled = false
 connection_lines_curvature = 0.0
 connection_lines_thickness = 8.0
+zoom_min = 1.0
+zoom_max = 1.0
 minimap_enabled = false
 show_menu = false
 script = ExtResource("2_ybcgl")
 
 [node name="PopupMenu" type="PopupMenu" parent="Graph/GraphEdit"]
-item_count = 1
+item_count = 3
 item_0/text = "New State"
 item_0/id = 0
+item_1/text = "Start State"
+item_1/id = 1
+item_2/text = "End State"
+item_2/id = 2
 
 [node name="Anchor" type="Node" parent="Graph/GraphEdit" node_paths=PackedStringArray("anchor_to")]
 script = ExtResource("2_270e5")

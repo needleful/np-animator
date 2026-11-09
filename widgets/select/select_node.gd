@@ -9,8 +9,8 @@ const FOOTER_CHILDREN := 2
 
 func _ready():
 	super._ready()
-	set_input(0, NPA.Type._int)
-	set_output(get_child_count() - FOOTER_CHILDREN, NPA.Type._Animation)
+	set_in_out(0, NPA.Type._int, NPA.Type._Animation)
+	set_input(1, NPA.Type._float)
 	
 	var slot := get_children().find(item)
 	if slot >= 0:
@@ -26,19 +26,8 @@ func delete_item(new_item: Node):
 	delete_port(new_item)
 
 func _on_add_pressed():
-	var old_output := get_child_count() - FOOTER_CHILDREN
+	var pos := get_child_count() - FOOTER_CHILDREN
 	var n := item_template.duplicate()
 	add_child(n)
-	move_child(n, old_output)
-
-	var new_output := get_child_count() - FOOTER_CHILDREN
-	copy_slot(old_output, new_output)
-	
-	var edit := get_parent() as NPA
-	if edit:
-		edit.reconnect_slot(self, old_output, new_output)
-	
-	set_input(old_output, NPA.Type._Animation)
-	
-	var slot := get_children().find(item)
-	add_item(slot, n)
+	move_child(n, pos)
+	set_input(pos+1, NPA.Type._Animation)

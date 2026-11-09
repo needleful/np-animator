@@ -29,6 +29,7 @@ script = ExtResource("1_fk1em")
 
 [node name="StateName" type="LineEdit" parent="."]
 layout_mode = 2
+placeholder_text = "State"
 
 [node name="OptionButton" type="OptionButton" parent="."]
 layout_mode = 2
